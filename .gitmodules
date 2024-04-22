@@ -1,9 +1,9 @@
 [submodule "application"]
 	path = application
-	url = https://github.com/inciotiq/app-starter-base.git
+	url = https://github.com/Iotiq-Erste/kimono-application.git
 [submodule "commons"]
 	path = commons
-	url = https://github.com/inciotiq/commons.git
+	url = https://github.com/Iotiq-Erste/commons-module.git
 [submodule "user"]
 	path = user
-	url = https://github.com/inciotiq/app-starter-user.git
+	url = https://github.com/Iotiq-Erste/users-module.git
