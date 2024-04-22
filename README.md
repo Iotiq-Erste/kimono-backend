@@ -1,6 +1,7 @@
-# App Starter
+# Kimono Backend Project
+[commons module](https://github.com/Iotiq-Erste/commons-module.git)
 
-Base app with basic configurations, some utility classes and user management.
+[users module](https://github.com/Iotiq-Erste/users-module.git)
 
 ## Running the Project
 
@@ -8,13 +9,8 @@ Run the `Application.java` class in the `application` module.
 
 ## Modules
 
-- [app-base-starter](https://github.com/inciotiq/app-starter-base): Template for an app using other modules in App
-  Starter. Fork this module to make changes.
 - [commons](https://github.com/inciotiq/commons): Some fundamental classes and methods.
 - [user](https://github.com/inciotiq/app-starter-user): Provides user management with roles.
-
-## How to use this project
-[Click here for a walkthrough](FORK-HELP.md)
 
 ---
 
@@ -24,4 +20,4 @@ Run the `Application.java` class in the `application` module.
   running the parent project. If `commons` project can't be found, compile the `commons` project and try running the
   parent project. (Running the parent project means running `Application.java` class in the `application` module)
 - **Metamodels are missing:** The metamodels are generated when the application starts for the first time. Comment out
-  the code that uses metamodels and run the project. Then you will be able to add the metamodels back. 
+  the code that uses metamodels and run the project. Then you will be able to add the metamodels back.
