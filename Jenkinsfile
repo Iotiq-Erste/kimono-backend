@@ -20,7 +20,7 @@ pipeline {
         DEPLOYMENT_BRANCH          = "master"
         DEPLOYMENT_SERVER_HOSTNAME = "fileserver.dakikyazilim.com"
         DEPLOYMENT_SERVER_USERNAME = "erste"
-        DOCKER_COMPOSE_FILE_PATH   = "kimono/docker-compose.yml"
+        DOCKER_COMPOSE_FILE_PATH   = "dockerfiles/kimono/docker-compose.yml"
     }
 
     tools {
