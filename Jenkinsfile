@@ -134,7 +134,7 @@ pipeline {
                         link: RUN_DISPLAY_URL,
                         result: "SUCCESS",
                         title: DISCORD_MESSAGE_TITLE,
-                        webhookURL: DISCORD_CULTURATI_WEBHOOK_URL
+                        webhookURL: DISCORD_KIMONO_WEBHOOK_URL
                 }
             }
         }
@@ -157,7 +157,7 @@ pipeline {
                         link: RUN_DISPLAY_URL,
                         result: "FAILURE",
                         title: DISCORD_MESSAGE_TITLE,
-                        webhookURL: DISCORD_CULTURATI_WEBHOOK_URL
+                        webhookURL: DISCORD_KIMONO_WEBHOOK_URL
                 }
             }
             publishChecks name: "${lastStage}", conclusion: 'FAILURE',  status: 'COMPLETED'
