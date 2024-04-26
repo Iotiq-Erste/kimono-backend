@@ -43,7 +43,7 @@ pipeline {
                     stagesMap.each { value ->
                         publishChecks name: "${value}", status: 'QUEUED'
                     }
-                    env.TRIGGERED_BY_SUBMODULE = "${env.SUBMODULE_JOB_NAME != null ? true : false}"
+                    env.TRIGGERED_BY_SUBMODULE = "${params.SUBMODULE_JOB_NAME != null ? true : false}"
                     if(env.TRIGGERED_BY_SUBMODULE.toBoolean()){
                         env.SUBMODULE_JOB_NAME = params.SUBMODULE_JOB_NAME
                         env.SUBMODULE_COMMIT_MESSAGE = params.SUBMODULE_COMMIT_MESSAGE
