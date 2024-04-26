@@ -43,10 +43,13 @@ pipeline {
                     stagesMap.each { value ->
                         publishChecks name: "${value}", status: 'QUEUED'
                     }
-                    env.SUBMODULE_JOB_NAME = params.SUBMODULE_JOB_NAME
-                    env.SUBMODULE_COMMIT_MESSAGE = params.SUBMODULE_COMMIT_MESSAGE
-                    env.SUBMODULE_BUILD_DISPLAY_NAME = params.SUBMODULE_BUILD_DISPLAY_NAME
-                    env.SUBMODULE_RUN_DISPLAY_URL = params.SUBMODULE_RUN_DISPLAY_URL
+                    env.TRIGGERED_BY_SUBMODULE = "${env.SUBMODULE_JOB_NAME != null ? true : false}"
+                    if(env.TRIGGERED_BY_SUBMODULE.toBoolean()){
+                        env.SUBMODULE_JOB_NAME = params.SUBMODULE_JOB_NAME
+                        env.SUBMODULE_COMMIT_MESSAGE = params.SUBMODULE_COMMIT_MESSAGE
+                        env.SUBMODULE_BUILD_DISPLAY_NAME = params.SUBMODULE_BUILD_DISPLAY_NAME
+                        env.SUBMODULE_RUN_DISPLAY_URL = params.SUBMODULE_RUN_DISPLAY_URL
+                    }
                 }
                 sh 'printenv'
             }
@@ -132,12 +135,11 @@ pipeline {
                         DISCORD_MESSAGE_DESCRIPTION += "Pull Request: [${CHANGE_URL}] (${CHANGE_TITLE})" +
                                          "   ( ${CHANGE_BRANCH}   :arrow_right:   ${CHANGE_TARGET} )\n\n"
                     }
-                    if (env.SUBMODULE_JOB_NAME) {
+                    if (env.TRIGGERED_BY_SUBMODULE.toBoolean()) {
                        DISCORD_MESSAGE_DESCRIPTION += "Triggered By: [${env.SUBMODULE_JOB_NAME} ${env.SUBMODULE_BUILD_DISPLAY_NAME}](${SUBMODULE_RUN_DISPLAY_URL})\n\n"
+                       DISCORD_MESSAGE_DESCRIPTION += env.SUBMODULE_COMMIT_MESSAGE
                     }
-                    if (env.SUBMODULE_COMMIT_MESSAGE) {
-                        DISCORD_MESSAGE_DESCRIPTION += env.SUBMODULE_COMMIT_MESSAGE
-                    }else{
+                    else{
                         DISCORD_MESSAGE_DESCRIPTION += env.COMMIT_MESSAGE
                     }
                     discordSend description: DISCORD_MESSAGE_DESCRIPTION,
@@ -162,12 +164,11 @@ pipeline {
                         DISCORD_MESSAGE_DESCRIPTION += "Pull Request: [${CHANGE_URL}] (${CHANGE_TITLE})" +
                                          "   ( ${CHANGE_BRANCH}   :arrow_right:   ${CHANGE_TARGET} )\n\n"
                     }
-                    if (env.SUBMODULE_JOB_NAME) {
+                    if (env.TRIGGERED_BY_SUBMODULE.toBoolean()) {
                        DISCORD_MESSAGE_DESCRIPTION += "Triggered By: [${env.SUBMODULE_JOB_NAME} ${env.SUBMODULE_BUILD_DISPLAY_NAME}](${SUBMODULE_RUN_DISPLAY_URL})\n\n"
+                       DISCORD_MESSAGE_DESCRIPTION += env.SUBMODULE_COMMIT_MESSAGE
                     }
-                    if (env.SUBMODULE_COMMIT_MESSAGE) {
-                        DISCORD_MESSAGE_DESCRIPTION += env.SUBMODULE_COMMIT_MESSAGE
-                    }else{
+                    else{
                         DISCORD_MESSAGE_DESCRIPTION += env.COMMIT_MESSAGE
                     }
                     discordSend description: DISCORD_MESSAGE_DESCRIPTION,
