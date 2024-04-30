@@ -5,7 +5,7 @@
 
     <groupId>org.springframework</groupId>
     <artifactId>multi-module-app-starter</artifactId>
-    <version>0.1.0</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -13,6 +13,10 @@
         <module>user</module>
         <module>application</module>
     </modules>
+
+    <properties>
+        <revision>1.0.0</revision>
+    </properties>
 
     <build>
         <plugins>

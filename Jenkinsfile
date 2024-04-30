@@ -50,6 +50,9 @@ pipeline {
                         env.SUBMODULE_BUILD_DISPLAY_NAME = params.SUBMODULE_BUILD_DISPLAY_NAME
                         env.SUBMODULE_RUN_DISPLAY_URL = params.SUBMODULE_RUN_DISPLAY_URL
                     }
+                    env.POM_VERSION = readMavenPom().getProperties().getProperty("revision")
+                    env.APP_VERSION = "${env.POM_VERSION}-${env.BUILD_NUMBER}"
+                    env.COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
                 }
                 sh 'printenv'
             }
